@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Every build on GitHub gets a higher version number, so a new APK installs over the old one.
+def buildNumber = (System.getenv('GITHUB_RUN_NUMBER') ?: '1').toInteger()
+
+android {
+    namespace 'ar.gasparrini.farmacia'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'ar.gasparrini.farmacia'
+        minSdk 26
+        targetSdk 34
+        versionCode buildNumber
+        versionName "1.${buildNumber}"
+    }
+
+    // Fixed key kept in the repo: all versions are signed the same way and update each other.
+    signingConfigs {
+        release {
+            storeFile file('farmacia.jks')
+            storeType 'pkcs12'
+            storePassword 'gasparrini'
+            keyAlias 'farmacia'
+            keyPassword 'gasparrini'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}

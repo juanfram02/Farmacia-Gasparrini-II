@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Farmacia Gasparrini II</string>
+    <string name="wallpaper_name">Farmacia Gasparrini II</string>
+    <string name="wallpaper_description">La farmacia en botella, en vivo: clientes, farmacéuticos y eventos.</string>
+    <string name="wallpaper_fallback">Abrí Fondos de pantalla › Fondos animados y elegí Farmacia Gasparrini II</string>
+</resources>
